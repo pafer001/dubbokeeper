@@ -16,7 +16,11 @@
             </value>
         </property>
     </bean>
+    <dubbo:registry address="10.16.6.245:2181" protocol="zookeeper"
+                    group="dubbo/TEST2"/>
 
-    <dubbo:reference interface="com.dubboclub.dk.storage.StatisticsStorage" check="false"  id="statisticsStorage"/>
+
+    <dubbo:reference interface="com.dubboclub.dk.storage.StatisticsStorage" check="false"
+                     id="statisticsStorage"/>
 
 </beans>

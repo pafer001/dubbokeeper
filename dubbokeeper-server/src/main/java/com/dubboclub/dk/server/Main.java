@@ -36,8 +36,9 @@ public class Main {
     }
 
     private static void start(){
-        ClassPathXmlApplicationContext classPathXmlApplicationContext = new ClassPathXmlApplicationContext("classpath*:/META-INF/spring/*.xml");
-        classPathXmlApplicationContext.start();
+        ClassPathXmlApplicationContext context
+                = new ClassPathXmlApplicationContext("classpath*:/META-INF/spring/*.xml");
+        context.start();
         running=true;
         synchronized (Main.class) {
             while (running) {
@@ -46,7 +47,7 @@ public class Main {
                 } catch (Throwable e) {
                 }
             }
-            classPathXmlApplicationContext.stop();
+            context.stop();
         }
     }
 

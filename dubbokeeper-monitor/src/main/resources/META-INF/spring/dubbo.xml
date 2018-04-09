@@ -6,11 +6,12 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
+    <dubbo:registry address="10.16.6.245:2181" protocol="zookeeper"
+                    group="dubbo/TEST2"/>
 
     <bean class="com.dubboclub.dk.monitor.DubboKeeperMonitorService" autowire="byType" id="dubboKeeperMonitorService">
 
     </bean>
-
     <dubbo:service interface="com.alibaba.dubbo.monitor.MonitorService" ref="dubboKeeperMonitorService" id="exportMonitorService">
         <dubbo:parameter key="interval" value="${monitor.collect.interval}"/>
     </dubbo:service>
