@@ -28,11 +28,11 @@ public abstract class AbstractApplicationStatisticsStorage implements EventHandl
 
     private static final Logger logger = LoggerFactory.getLogger("Application-Writer");
 
-    private  StatisticsEventFactory statisticsEventFactory;
+    private StatisticsEventFactory statisticsEventFactory;
 
     protected String application;
 
-    private  StatisticsProducer statisticsProducer;
+    private StatisticsProducer statisticsProducer;
 
     protected volatile long maxElapsed;
 
@@ -43,14 +43,15 @@ public abstract class AbstractApplicationStatisticsStorage implements EventHandl
     protected volatile int maxSuccess;
 
     //默认是1分钟持久化一次
-    private static final int WRITE_INTERVAL= Integer.parseInt(ConfigUtils.getProperty("monitor.write.interval","6000"));
+    private static final int WRITE_INTERVAL = Integer.parseInt(ConfigUtils.getProperty("monitor.write.interval", "6000"));
 
-    private long lastWrite=0;
+    private long lastWrite = 0;
 
     private List<Statistics> tempStatisticsContainer = new ArrayList<Statistics>();
 
     /**
      * 这个是单线程的,所以是线程安全的
+     *
      * @param event
      * @param sequence
      * @param endOfBatch
@@ -60,27 +61,27 @@ public abstract class AbstractApplicationStatisticsStorage implements EventHandl
     public void onEvent(StatisticsEvent event, long sequence, boolean endOfBatch) throws Exception {
         Statistics statistics = event.get();
         tempStatisticsContainer.add(statistics);
-        if(statistics==null){
+        if (statistics == null) {
             return;
         }
-        if(maxFault<statistics.getFailureCount()){
-            maxFault=statistics.getFailureCount();
+        if (maxFault < statistics.getFailureCount()) {
+            maxFault = statistics.getFailureCount();
         }
-        if(maxSuccess<statistics.getSuccessCount()){
-            maxSuccess=statistics.getSuccessCount();
+        if (maxSuccess < statistics.getSuccessCount()) {
+            maxSuccess = statistics.getSuccessCount();
         }
-        if(maxConcurrent<statistics.getConcurrent()){
+        if (maxConcurrent < statistics.getConcurrent()) {
             maxConcurrent = statistics.getConcurrent();
         }
-        if(maxElapsed<statistics.getElapsed()){
+        if (maxElapsed < statistics.getElapsed()) {
             maxElapsed = statistics.getElapsed();
         }
-        if(System.currentTimeMillis()-lastWrite>WRITE_INTERVAL*1000){
-            logger.info("starting writing statistics,last write "+lastWrite);
+        if (System.currentTimeMillis() - lastWrite > WRITE_INTERVAL * 1000) {
+            logger.info("starting writing statistics,last write " + lastWrite);
             batchAddStatistics(tempStatisticsContainer);
-            logger.info("finished write statistics,write size "+tempStatisticsContainer.size());
+            logger.info("finished write statistics,write size " + tempStatisticsContainer.size());
             tempStatisticsContainer.clear();
-            lastWrite=System.currentTimeMillis();
+            lastWrite = System.currentTimeMillis();
         }
 
     }
@@ -91,11 +92,11 @@ public abstract class AbstractApplicationStatisticsStorage implements EventHandl
 
     }
 
-    public void start(){
+    public void start() {
         statisticsEventFactory = new StatisticsEventFactory();
         Disruptor<StatisticsEvent> disruptor = new Disruptor<StatisticsEvent>(statisticsEventFactory,
                 1024,
-                new NamedThreadFactory(application+"-writer"),
+                new NamedThreadFactory(application + "-writer"),
                 ProducerType.MULTI,
                 new TimeoutBlockingWaitStrategy(5000, TimeUnit.MILLISECONDS));
         disruptor.handleEventsWith(this);
@@ -104,10 +105,9 @@ public abstract class AbstractApplicationStatisticsStorage implements EventHandl
     }
 
     //暴露给外面的添加监控数据接口
-    public final void addStatistics(Statistics statistics){
+    public final void addStatistics(Statistics statistics) {
         statisticsProducer.produce(statistics);
     }
-
 
 
     protected abstract void batchAddStatistics(List<Statistics> statisticsList);

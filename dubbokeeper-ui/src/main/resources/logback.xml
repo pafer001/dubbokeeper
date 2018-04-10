@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-    <property resource="dubbo.properties" />
+    <property resource="dubbo.properties"/>
     <substitutionProperty name="PROJECT_NAME" value="dubbokeeper"/>
     <substitutionProperty name="LOG_HOME" value="${monitor.log.home}"/>
 
-    <timestamp key="byDate" datePattern="yyyyMMdd" />
+    <timestamp key="byDate" datePattern="yyyyMMdd"/>
 
     <!-- web log -->
     <appender name="dubboRolling" class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -46,15 +46,15 @@
     <logger
             name="com.alibaba.dubbo"
             level="DEBUG">
-        <appender-ref ref="dubboRolling" />
+        <appender-ref ref="dubboRolling"/>
     </logger>
     <!--dubbo-->
     <logger
             name="com.dubboclub"
             level="DEBUG">
-        <appender-ref ref="dkRolling" />
+        <appender-ref ref="dkRolling"/>
     </logger>
     <root level="DEBUG">
-             <appender-ref ref="STDOUT" />
-   </root>
+        <appender-ref ref="STDOUT"/>
+    </root>
 </configuration>

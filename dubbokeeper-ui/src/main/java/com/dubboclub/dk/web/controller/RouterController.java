@@ -30,14 +30,15 @@ public class RouterController {
     private ProviderService providerService;
 
     @RequestMapping("provider/{serviceKey}/list.htm")
-    public @ResponseBody List<Route> queryRoutesByServiceKey(@PathVariable("serviceKey")String serviceKey) throws UnsupportedEncodingException {
+    public @ResponseBody
+    List<Route> queryRoutesByServiceKey(@PathVariable("serviceKey") String serviceKey) throws UnsupportedEncodingException {
         serviceKey = URLDecoder.decode(serviceKey, "UTF-8");
         return routeService.listByServiceKey(serviceKey);
     }
 
     @RequestMapping("create.htm")
     public @ResponseBody
-    BasicResponse createRoute(@RequestBody Route route){
+    BasicResponse createRoute(@RequestBody Route route) {
         BasicResponse response = new BasicResponse();
         response.setResult(BasicResponse.SUCCESS);
         routeService.createRoute(route);
@@ -45,19 +46,20 @@ public class RouterController {
     }
 
     @RequestMapping("batch-{type}.htm")
-    public @ResponseBody BasicResponse batchDelete(@RequestParam("ids")String ids,@PathVariable("type") String type){
+    public @ResponseBody
+    BasicResponse batchDelete(@RequestParam("ids") String ids, @PathVariable("type") String type) {
         BasicResponse response = new BasicResponse();
         String[] idArray = Constants.COMMA_SPLIT_PATTERN.split(ids);
-        if("delete".equals(type)){
-            for(String id:idArray){
+        if ("delete".equals(type)) {
+            for (String id : idArray) {
                 routeService.deleteRoute(Long.parseLong(id));
             }
-        }else if("enable".equals(type)){
-            for(String id:idArray){
+        } else if ("enable".equals(type)) {
+            for (String id : idArray) {
                 routeService.enable(Long.parseLong(id));
             }
-        }else if("disable".equals(type)){
-            for(String id:idArray){
+        } else if ("disable".equals(type)) {
+            for (String id : idArray) {
                 routeService.disable(Long.parseLong(id));
             }
         }
@@ -67,23 +69,25 @@ public class RouterController {
 
 
     @RequestMapping("{type}_{id}.htm")
-    public @ResponseBody BasicResponse delete(@PathVariable("type")String type,@PathVariable("id")Long id){
+    public @ResponseBody
+    BasicResponse delete(@PathVariable("type") String type, @PathVariable("id") Long id) {
         BasicResponse response = new BasicResponse();
         response.setResult(BasicResponse.SUCCESS);
-        if("delete".equals(type)){
+        if ("delete".equals(type)) {
             routeService.deleteRoute(id);
-        }else if("enable".equals(type)){
+        } else if ("enable".equals(type)) {
             routeService.enable(id);
-        }else if("disable".equals(type)){
+        } else if ("disable".equals(type)) {
             routeService.disable(id);
-        }else{
+        } else {
             response.setResult(BasicResponse.FAILED);
         }
         return response;
     }
 
     @RequestMapping("update.htm")
-    public @ResponseBody BasicResponse updateRoute(@RequestBody Route route){
+    public @ResponseBody
+    BasicResponse updateRoute(@RequestBody Route route) {
         BasicResponse response = new BasicResponse();
         response.setResult(BasicResponse.SUCCESS);
         route.setRule(null);
@@ -94,15 +98,15 @@ public class RouterController {
 
     @ResponseBody
     @RequestMapping("list.htm")
-    public List<RouteAbstractInfo> list(){
+    public List<RouteAbstractInfo> list() {
         List<Provider> providers = providerService.listAllProvider();
         List<RouteAbstractInfo> routeAbstractInfos = new ArrayList<RouteAbstractInfo>();
-        for(Provider provider :providers){
+        for (Provider provider : providers) {
             RouteAbstractInfo routeAbstractInfo = new RouteAbstractInfo();
             routeAbstractInfo.setServiceKey(provider.getServiceKey());
             routeAbstractInfo.setApplicationName(provider.getApplication());
             routeAbstractInfo.setRouteCount(routeService.listByServiceKey(provider.getServiceKey()).size());
-            if(routeAbstractInfo.getRouteCount()>0){
+            if (routeAbstractInfo.getRouteCount() > 0) {
                 routeAbstractInfos.add(routeAbstractInfo);
             }
         }
@@ -110,7 +114,8 @@ public class RouterController {
     }
 
     @RequestMapping("get_{id}.htm")
-    public @ResponseBody Route getRoute(@PathVariable("id")Long id){
+    public @ResponseBody
+    Route getRoute(@PathVariable("id") Long id) {
         return routeService.getRoute(id);
     }
 

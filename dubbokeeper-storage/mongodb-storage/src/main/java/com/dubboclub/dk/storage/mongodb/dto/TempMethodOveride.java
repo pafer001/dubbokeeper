@@ -5,9 +5,9 @@ import java.io.Serializable;
 /**
  * Created by hideh on 2016/3/15.
  */
-public class TempMethodOveride implements Serializable{
+public class TempMethodOveride implements Serializable {
 
-    private  String m;
+    private String m;
     private int total;
 
     public String getM() {

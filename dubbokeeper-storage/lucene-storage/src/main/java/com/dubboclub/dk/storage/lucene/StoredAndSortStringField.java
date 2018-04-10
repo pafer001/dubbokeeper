@@ -11,7 +11,8 @@ import org.apache.lucene.util.BytesRef;
  */
 public class StoredAndSortStringField extends Field {
 
-    static  FieldType TYPE_STORED_SORT = new FieldType();
+    static FieldType TYPE_STORED_SORT = new FieldType();
+
     static {
         TYPE_STORED_SORT.setOmitNorms(true);
         TYPE_STORED_SORT.setIndexOptions(IndexOptions.DOCS);

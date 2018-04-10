@@ -17,12 +17,12 @@ public class StatisticsProducer {
         this.statisticsEventRingBuffer = statisticsEventRingBuffer;
     }
 
-    public void produce(Statistics statistics){
+    public void produce(Statistics statistics) {
         long sequence = statisticsEventRingBuffer.next();
-        try{
+        try {
             StatisticsEvent statisticsEvent = statisticsEventRingBuffer.get(sequence);
             statisticsEvent.set(statistics);
-        }finally {
+        } finally {
             statisticsEventRingBuffer.publish(sequence);
         }
     }

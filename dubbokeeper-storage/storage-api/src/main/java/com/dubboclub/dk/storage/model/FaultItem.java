@@ -3,7 +3,7 @@ package com.dubboclub.dk.storage.model;
 /**
  * Created by bieber on 2015/11/4.
  */
-public class FaultItem extends  BaseItem{
+public class FaultItem extends BaseItem {
 
     private Integer fault;
 

@@ -5,7 +5,7 @@ package com.dubboclub.dk.admin.model;
  */
 public class Application {
 
-    public static final short PROVIDER=1,CONSUMER=2, PROVIDER_AND_CONSUMER =3;
+    public static final short PROVIDER = 1, CONSUMER = 2, PROVIDER_AND_CONSUMER = 3;
 
     private String application; /* 应用名 */
 

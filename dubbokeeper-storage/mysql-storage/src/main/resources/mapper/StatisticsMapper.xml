@@ -111,7 +111,7 @@
     </sql>
 
     <sql id="queryMethodSQLFragment">
-       <![CDATA[
+        <![CDATA[
 
          select id from `statistics_${application}` where timestamp>=#{start} and timestamp<#{end} and serviceInterface=#{serviceInterface} and method=#{method}
 
@@ -196,7 +196,7 @@
     </resultMap>
 
     <select id="queryServiceByApp" resultMap="serviceInfoMap">
-        select remoteType,serviceInterface from  `statistics_${application}` t group by t.serviceInterface,t.remoteType
+        select remoteType,serviceInterface from `statistics_${application}` t group by t.serviceInterface,t.remoteType
     </select>
 
 </mapper>

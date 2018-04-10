@@ -6,9 +6,9 @@ import java.io.Serializable;
  * Created by bieber on 2015/10/8.
  */
 public class Usage implements Serializable {
-    
+
     private String remoteAddress;
-    
+
     private Long count;
 
     public String getRemoteAddress() {

@@ -10,7 +10,8 @@ import org.apache.lucene.index.IndexOptions;
  */
 public class StoredAndSortNumericField extends Field {
 
-    static  FieldType TYPE_STORED_SORT = new FieldType();
+    static FieldType TYPE_STORED_SORT = new FieldType();
+
     static {
         TYPE_STORED_SORT.setOmitNorms(true);
         TYPE_STORED_SORT.setIndexOptions(IndexOptions.DOCS);
@@ -25,11 +26,12 @@ public class StoredAndSortNumericField extends Field {
         fieldsData = Long.valueOf(value);
     }
 
-    public StoredAndSortNumericField(String name,int value){
+    public StoredAndSortNumericField(String name, int value) {
         super(name, TYPE_STORED_SORT);
         fieldsData = Integer.valueOf(value);
     }
-    public StoredAndSortNumericField(String name,double value){
+
+    public StoredAndSortNumericField(String name, double value) {
         super(name, TYPE_STORED_SORT);
         fieldsData = Double.valueOf(value);
     }

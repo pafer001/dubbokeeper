@@ -19,30 +19,30 @@ import org.springframework.transaction.support.TransactionTemplate;
  * @description: 描述功能
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath*:applicationContext.xml","classpath*:META-INF/spring/mysql.xml"})
-public abstract class ApplicationStartUp extends AbstractJUnit4SpringContextTests{
+@ContextConfiguration(locations = {"classpath*:applicationContext.xml", "classpath*:META-INF/spring/mysql.xml"})
+public abstract class ApplicationStartUp extends AbstractJUnit4SpringContextTests {
 
 
     private TransactionTemplate transactionTemplate;
+
     @Before
-    public void before(){
+    public void before() {
         transactionTemplate = applicationContext.getBean(TransactionTemplate.class);
     }
 
-    protected <T extends Object> T getBean(Class<T> clazz){
+    protected <T extends Object> T getBean(Class<T> clazz) {
         return applicationContext.getBean(clazz);
     }
 
 
-    protected <T extends Object> T doInTransaction(TransactionCallback<T> callback){
+    protected <T extends Object> T doInTransaction(TransactionCallback<T> callback) {
         return transactionTemplate.execute(callback);
     }
 
 
-    protected void printObject(Object object){
+    protected void printObject(Object object) {
         System.out.println(JSON.toJSONString(object));
     }
-
 
 
 }

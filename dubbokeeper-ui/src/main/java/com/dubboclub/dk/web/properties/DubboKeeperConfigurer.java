@@ -13,7 +13,7 @@ public class DubboKeeperConfigurer extends PropertyPlaceholderConfigurer {
 
     @Override
     protected Properties mergeProperties() throws IOException {
-        Properties properties =  super.mergeProperties();
+        Properties properties = super.mergeProperties();
         ConfigUtils.appendProperties(properties);
         return properties;
     }

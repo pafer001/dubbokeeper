@@ -13,7 +13,7 @@ public class DefaultExceptionHandler {
 
     @ExceptionHandler(DataHadChangedException.class)
     public @ResponseBody
-    BasicResponse dataHadChanged(){
+    BasicResponse dataHadChanged() {
         BasicResponse response = new BasicResponse();
         response.setResult(BasicResponse.FAILED);
         response.setMemo("数据已经发生变更！");

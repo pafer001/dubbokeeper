@@ -22,7 +22,7 @@ public class OverrideInfo {
     private String serviceKey;
 
 
-    public Override toOverride(){
+    public Override toOverride() {
         Override override = new Override();
         override.setParams(parameters);
         override.setEnabled(enable);
@@ -31,10 +31,10 @@ public class OverrideInfo {
         return override;
     }
 
-    public static OverrideInfo valueOf(Override override){
+    public static OverrideInfo valueOf(Override override) {
         OverrideInfo overrideInfo = new OverrideInfo();
         overrideInfo.setAddress(override.getAddress());
-        overrideInfo.setApplication(override.getApplication()==null? Constants.ANY_VALUE:override.getApplication());
+        overrideInfo.setApplication(override.getApplication() == null ? Constants.ANY_VALUE : override.getApplication());
         overrideInfo.setEnable(override.isEnabled());
         overrideInfo.setId(override.getId());
         overrideInfo.setParameters(override.getParams());

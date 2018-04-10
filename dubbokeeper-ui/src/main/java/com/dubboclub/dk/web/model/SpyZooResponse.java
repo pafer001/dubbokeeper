@@ -6,9 +6,9 @@ import java.util.List;
  * Created by bieber on 2015/9/24.
  */
 public class SpyZooResponse {
-    
+
     private List<SpyZooNode> nodeList;
-    
+
     private State state = State.SUCCESS;
 
     public List<SpyZooNode> getNodeList() {
@@ -27,7 +27,7 @@ public class SpyZooResponse {
         this.state = state;
     }
 
-    public static enum State{
-        SUCCESS,FAILED,REMOTE_ERROR
+    public static enum State {
+        SUCCESS, FAILED, REMOTE_ERROR
     }
 }

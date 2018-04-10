@@ -11,11 +11,11 @@ public class StatisticsEvent {
 
     private Statistics statistics;
 
-    public void set(Statistics statistics){
+    public void set(Statistics statistics) {
         this.statistics = statistics;
     }
 
-    public Statistics get(){
+    public Statistics get() {
         return statistics;
     }
 }

@@ -1,17 +1,9 @@
 package com.dubboclub.dk.storage.mysql.mapper;
 
-import com.dubboclub.dk.storage.model.ApplicationInfo;
 import com.dubboclub.dk.storage.mysql.ApplicationStartUp;
-import com.dubboclub.dk.storage.mysql.DBTransactionTestCallback;
-import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.support.TransactionCallback;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.Statement;
 
 /**
  * @date: 2015/12/17.

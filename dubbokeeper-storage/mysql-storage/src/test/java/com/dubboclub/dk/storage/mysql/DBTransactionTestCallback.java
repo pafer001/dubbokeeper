@@ -15,7 +15,7 @@ import org.springframework.transaction.support.TransactionCallback;
 public abstract class DBTransactionTestCallback<T extends Object> implements TransactionCallback<T> {
     @Override
     public T doInTransaction(TransactionStatus status) {
-        T result =  doInTransaction();
+        T result = doInTransaction();
         status.setRollbackOnly();
         return result;
     }

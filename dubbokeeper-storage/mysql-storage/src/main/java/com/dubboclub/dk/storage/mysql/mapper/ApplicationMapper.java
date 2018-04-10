@@ -3,7 +3,6 @@ package com.dubboclub.dk.storage.mysql.mapper;
 import com.dubboclub.dk.storage.model.ApplicationInfo;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -22,8 +21,8 @@ public interface ApplicationMapper {
     public List<ApplicationInfo> listApps();
 
 
-    public int getAppType(@Param("name")String name);
+    public int getAppType(@Param("name") String name);
 
-    public int updateAppType(@Param("name")String name,@Param("type")int type);
+    public int updateAppType(@Param("name") String name, @Param("type") int type);
 
 }

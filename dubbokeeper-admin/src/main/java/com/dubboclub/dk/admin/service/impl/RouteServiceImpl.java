@@ -28,8 +28,8 @@ public class RouteServiceImpl extends AbstractService implements RouteService {
 
     @Override
     public void updateRoute(Route route) {
-        URL oldUrl = getOneById(Constants.ROUTERS_CATEGORY,route.getId());
-        update(oldUrl,route.toUrl());
+        URL oldUrl = getOneById(Constants.ROUTERS_CATEGORY, route.getId());
+        update(oldUrl, route.toUrl());
     }
 
     @Override
@@ -38,25 +38,25 @@ public class RouteServiceImpl extends AbstractService implements RouteService {
 
             @Override
             public Route convert(Pair<Long, URL> pair) {
-                if(pair.getValue().getPath().equals(Tool.getInterface(serviceKey))){
+                if (pair.getValue().getPath().equals(Tool.getInterface(serviceKey))) {
                     return SyncUtils.url2Route(pair);
-                }else{
+                } else {
                     return null;
                 }
             }
-        }, Constants.ROUTERS_CATEGORY, Constants.VERSION_KEY, Tool.getVersion(serviceKey),Constants.GROUP_KEY,Tool.getGroup(serviceKey));
+        }, Constants.ROUTERS_CATEGORY, Constants.VERSION_KEY, Tool.getVersion(serviceKey), Constants.GROUP_KEY, Tool.getGroup(serviceKey));
     }
 
     @Override
     public Route getRoute(Long id) {
-        return SyncUtils.url2Route(new Pair<Long, URL>(id,getOneById(Constants.ROUTERS_CATEGORY,id)));
+        return SyncUtils.url2Route(new Pair<Long, URL>(id, getOneById(Constants.ROUTERS_CATEGORY, id)));
     }
 
     @Override
     public void enable(Long id) {
         Route route = getRoute(id);
-        if(route.isEnabled()){
-            return ;
+        if (route.isEnabled()) {
+            return;
         }
         route.setEnabled(true);
         updateRoute(route);
@@ -65,8 +65,8 @@ public class RouteServiceImpl extends AbstractService implements RouteService {
     @Override
     public void disable(Long id) {
         Route route = getRoute(id);
-        if(!route.isEnabled()){
-            return ;
+        if (!route.isEnabled()) {
+            return;
         }
         route.setEnabled(false);
         updateRoute(route);

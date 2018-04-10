@@ -8,17 +8,17 @@ import java.util.List;
  * Created by bieber on 2015/9/24.
  */
 public class SpyZooNode {
-    
+
     private String parent;
-    
+
     private String name;
-    
+
     private String decodeName;
-    
+
     private List<SpyZooNode> childNodes;
-    
+
     private List<SpyZooNode> nodeList;
-    
+
     private Stat nodeStat;
 
     public List<SpyZooNode> getNodeList() {
@@ -52,16 +52,16 @@ public class SpyZooNode {
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public String getDecodeName() {
-		return decodeName;
-	}
+        return decodeName;
+    }
 
-	public void setDecodeName(String decodeName) {
-		this.decodeName = decodeName;
-	}
+    public void setDecodeName(String decodeName) {
+        this.decodeName = decodeName;
+    }
 
-	public List<SpyZooNode> getChildNodes() {
+    public List<SpyZooNode> getChildNodes() {
         return childNodes;
     }
 

@@ -12,7 +12,8 @@
     <bean class="com.dubboclub.dk.monitor.DubboKeeperMonitorService" autowire="byType" id="dubboKeeperMonitorService">
 
     </bean>
-    <dubbo:service interface="com.alibaba.dubbo.monitor.MonitorService" ref="dubboKeeperMonitorService" id="exportMonitorService">
+    <dubbo:service interface="com.alibaba.dubbo.monitor.MonitorService" ref="dubboKeeperMonitorService"
+                   id="exportMonitorService">
         <dubbo:parameter key="interval" value="${monitor.collect.interval}"/>
     </dubbo:service>
 </beans>

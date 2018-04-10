@@ -4,10 +4,10 @@ package com.dubboclub.dk.web.model;
  * Created by bieber on 2015/6/6.
  * 应用消费服务信息
  */
-public class AppConsumeInfo extends BasicResponse{
+public class AppConsumeInfo extends BasicResponse {
 
     private String service;
-    
+
     private String serviceKey;
 
     private String providerName;
@@ -23,7 +23,7 @@ public class AppConsumeInfo extends BasicResponse{
     public String getAccessProtocol() {
         return accessProtocol;
     }
-    
+
     public String getServiceKey() {
         return serviceKey;
     }

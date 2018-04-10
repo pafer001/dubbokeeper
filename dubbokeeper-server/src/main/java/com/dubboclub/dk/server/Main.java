@@ -13,33 +13,33 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class Main {
 
-    private static volatile boolean running=false;
+    private static volatile boolean running = false;
 
-    private static final String STOP_COMMAND="stop";
+    private static final String STOP_COMMAND = "stop";
 
-    private static final String START_COMMAND="start";
+    private static final String START_COMMAND = "start";
 
-    public static void main(String[] args){
-        if(args.length==0){
+    public static void main(String[] args) {
+        if (args.length == 0) {
             throw new IllegalArgumentException("args must not be empty");
         }
-        if(STOP_COMMAND.equals(args[0])){
+        if (STOP_COMMAND.equals(args[0])) {
             stop();
-        }else{
+        } else {
             start();
         }
     }
 
-    private static void stop(){
-        running=false;
+    private static void stop() {
+        running = false;
         Main.class.notifyAll();
     }
 
-    private static void start(){
+    private static void start() {
         ClassPathXmlApplicationContext context
                 = new ClassPathXmlApplicationContext("classpath*:/META-INF/spring/*.xml");
         context.start();
-        running=true;
+        running = true;
         synchronized (Main.class) {
             while (running) {
                 try {

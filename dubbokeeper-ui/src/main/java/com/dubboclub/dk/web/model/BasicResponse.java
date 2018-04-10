@@ -5,9 +5,9 @@ package com.dubboclub.dk.web.model;
  */
 public class BasicResponse {
 
-    public static final short SUCCESS=0,FAILED=1;
+    public static final short SUCCESS = 0, FAILED = 1;
 
-    private short result=SUCCESS;
+    private short result = SUCCESS;
 
     private String memo;
 

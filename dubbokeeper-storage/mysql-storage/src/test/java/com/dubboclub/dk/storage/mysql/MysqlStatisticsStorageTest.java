@@ -4,13 +4,13 @@ import com.dubboclub.dk.storage.model.ApplicationInfo;
 import com.dubboclub.dk.storage.model.MethodMonitorOverview;
 import com.dubboclub.dk.storage.model.Statistics;
 import com.dubboclub.dk.storage.model.StatisticsOverview;
-import java.util.Collection;
-import java.util.List;
-import java.util.Random;
-
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.Random;
 
 /**
  * @date: 2015/12/28.
@@ -28,14 +28,14 @@ public class MysqlStatisticsStorageTest extends ApplicationStartUp {
     private MysqlStatisticsStorage mysqlStatisticsStorage;
 
 
-    private static final String[] SERVICES = {"CardService","UserService","LoginService"};
+    private static final String[] SERVICES = {"CardService", "UserService", "LoginService"};
 
     @Test
     public void testStoreStatistics() throws Exception {
         Random random = new Random();
-        for(int i=0;i<10000;i++){
+        for (int i = 0; i < 10000; i++) {
             Statistics statistics = new Statistics();
-            statistics.setApplication("hello"+i%10);
+            statistics.setApplication("hello" + i % 10);
             statistics.setConcurrent(new Long(random.nextInt(100)));
             statistics.setElapsed(Long.valueOf(random.nextInt(100000)));
             statistics.setFailureCount(random.nextInt(10));
@@ -49,7 +49,7 @@ public class MysqlStatisticsStorageTest extends ApplicationStartUp {
             statistics.setTps(random.nextInt(100));
             statistics.setTimestamp(System.currentTimeMillis());
             statistics.setSuccessCount(random.nextInt(5000));
-            statistics.setServiceInterface(statistics.getApplication()+"."+SERVICES[random.nextInt(SERVICES.length)]);
+            statistics.setServiceInterface(statistics.getApplication() + "." + SERVICES[random.nextInt(SERVICES.length)]);
             statistics.setRemoteType(Statistics.ApplicationType.PROVIDER);
             mysqlStatisticsStorage.storeStatistics(statistics);
         }
@@ -57,7 +57,7 @@ public class MysqlStatisticsStorageTest extends ApplicationStartUp {
 
     @Test
     public void testQueryStatisticsForMethod() throws Exception {
-        List<Statistics> statisticses =  mysqlStatisticsStorage.queryStatisticsForMethod("hello0", "hello0.CardService", "save",System.currentTimeMillis() - 60 * 60 * 1000, System.currentTimeMillis());
+        List<Statistics> statisticses = mysqlStatisticsStorage.queryStatisticsForMethod("hello0", "hello0.CardService", "save", System.currentTimeMillis() - 60 * 60 * 1000, System.currentTimeMillis());
         printObject(statisticses);
     }
 
@@ -74,7 +74,7 @@ public class MysqlStatisticsStorageTest extends ApplicationStartUp {
 
     @Test
     public void testQueryApplicationInfo() throws Exception {
-        ApplicationInfo applicationInfo =  mysqlStatisticsStorage.queryApplicationInfo("hello0", System.currentTimeMillis() - 10 * 60 * 1000, System.currentTimeMillis());
+        ApplicationInfo applicationInfo = mysqlStatisticsStorage.queryApplicationInfo("hello0", System.currentTimeMillis() - 10 * 60 * 1000, System.currentTimeMillis());
         printObject(applicationInfo);
     }
 
@@ -86,7 +86,7 @@ public class MysqlStatisticsStorageTest extends ApplicationStartUp {
 
     @Test
     public void testQueryServiceOverview() throws Exception {
-        StatisticsOverview statisticsOverview = mysqlStatisticsStorage.queryServiceOverview("hello0","hello0.CardService",System.currentTimeMillis() - 60 * 60 * 1000, System.currentTimeMillis());
+        StatisticsOverview statisticsOverview = mysqlStatisticsStorage.queryServiceOverview("hello0", "hello0.CardService", System.currentTimeMillis() - 60 * 60 * 1000, System.currentTimeMillis());
         printObject(statisticsOverview);
     }
 

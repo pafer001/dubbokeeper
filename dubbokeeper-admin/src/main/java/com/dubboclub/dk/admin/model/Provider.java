@@ -1,12 +1,12 @@
 /**
  * Project: dubbo.registry-1.1.0-SNAPSHOT
- *
+ * <p>
  * File Created at 2010-4-9
  * $Id: Provider.java 182846 2012-06-28 09:37:59Z tony.chenl $
- *
+ * <p>
  * Copyright 2008 Alibaba.com Croporation Limited.
  * All rights reserved.
- *
+ * <p>
  * This software is the confidential and proprietary information of
  * Alibaba Company. ("Confidential Information").  You shall not
  * disclose such Confidential Information and shall use it only in

@@ -5,17 +5,18 @@ import com.dubboclub.dk.storage.model.ApplicationInfo;
 import com.dubboclub.dk.storage.model.Statistics;
 import com.dubboclub.dk.storage.mysql.mapper.ApplicationMapper;
 import com.dubboclub.dk.storage.mysql.mapper.StatisticsMapper;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
-import javax.sql.DataSource;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.util.StringUtils;
+
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.List;
 
 /**
  * @date: 2015/12/28.
@@ -26,9 +27,9 @@ import org.springframework.util.StringUtils;
  * @fix:
  * @description: 描述功能
  */
-public class ApplicationStatisticsStorage  extends AbstractApplicationStatisticsStorage{
+public class ApplicationStatisticsStorage extends AbstractApplicationStatisticsStorage {
 
-    private static final String APPLICATION_TEMPLATE="CREATE TABLE `statistics_{}` (\n" +
+    private static final String APPLICATION_TEMPLATE = "CREATE TABLE `statistics_{}` (\n" +
             "  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
             "  `timestamp` bigint(1) NOT NULL DEFAULT '0' COMMENT '时间戳',\n" +
             "  `serviceInterface` varchar(255) NOT NULL DEFAULT '' COMMENT '接口名',\n" +
@@ -48,7 +49,7 @@ public class ApplicationStatisticsStorage  extends AbstractApplicationStatistics
             "  PRIMARY KEY (`id`),\n" +
             "  KEY `time-index` (`timestamp`),\n" +
             "  KEY `method-index` (`method`),\n" +
-            "  KEY `service-index` (`serviceInterface`)\n"+
+            "  KEY `service-index` (`serviceInterface`)\n" +
             ") ENGINE=InnoDB DEFAULT CHARSET=utf8;\n";
 
     private StatisticsMapper statisticsMapper;
@@ -61,44 +62,44 @@ public class ApplicationStatisticsStorage  extends AbstractApplicationStatistics
 
     private int type;
 
-    public ApplicationStatisticsStorage(ApplicationMapper applicationMapper,StatisticsMapper statisticsMapper,DataSource dataSource,TransactionTemplate transactionTemplate,String application,int type){
-        this(applicationMapper,statisticsMapper,dataSource,transactionTemplate,application,type,false);
+    public ApplicationStatisticsStorage(ApplicationMapper applicationMapper, StatisticsMapper statisticsMapper, DataSource dataSource, TransactionTemplate transactionTemplate, String application, int type) {
+        this(applicationMapper, statisticsMapper, dataSource, transactionTemplate, application, type, false);
     }
 
-    public ApplicationStatisticsStorage(ApplicationMapper applicationMapper,StatisticsMapper statisticsMapper,DataSource dataSource,TransactionTemplate transactionTemplate,String application,int type,boolean needCreateTable){
+    public ApplicationStatisticsStorage(ApplicationMapper applicationMapper, StatisticsMapper statisticsMapper, DataSource dataSource, TransactionTemplate transactionTemplate, String application, int type, boolean needCreateTable) {
         super(application);
         this.application = application;
         this.statisticsMapper = statisticsMapper;
         this.dataSource = dataSource;
         this.transactionTemplate = transactionTemplate;
         this.applicationMapper = applicationMapper;
-        if(needCreateTable){
+        if (needCreateTable) {
             ApplicationInfo applicationInfo = new ApplicationInfo();
             applicationInfo.setApplicationName(application);
             applicationInfo.setApplicationType(type);
             try {
                 this.applicationMapper.addApplication(applicationInfo);
                 createNewAppTable(application);
-            } catch(DuplicateKeyException e) {
+            } catch (DuplicateKeyException e) {
                 e.printStackTrace();
             }
         }
         init();
-        this.type=type;
+        this.type = type;
     }
 
 
-    private void init(){
+    private void init() {
         long end = System.currentTimeMillis();
-        long start = System.currentTimeMillis()-24*60*60*1000;
-        Long concurrent =statisticsMapper.queryMaxConcurrent(application,null,start,end);
-        Long elapsed = statisticsMapper.queryMaxElapsed(application,null,start,end);
-        Integer fault = statisticsMapper.queryMaxFault(application,null,start,end);
-        Integer success = statisticsMapper.queryMaxSuccess(application,null,start,end);
-        maxConcurrent =concurrent==null?0:concurrent;
-        maxElapsed = elapsed==null?0:elapsed;
-        maxFault=fault==null?0:fault;
-        maxSuccess=success==null?0:success;
+        long start = System.currentTimeMillis() - 24 * 60 * 60 * 1000;
+        Long concurrent = statisticsMapper.queryMaxConcurrent(application, null, start, end);
+        Long elapsed = statisticsMapper.queryMaxElapsed(application, null, start, end);
+        Integer fault = statisticsMapper.queryMaxFault(application, null, start, end);
+        Integer success = statisticsMapper.queryMaxSuccess(application, null, start, end);
+        maxConcurrent = concurrent == null ? 0 : concurrent;
+        maxElapsed = elapsed == null ? 0 : elapsed;
+        maxFault = fault == null ? 0 : fault;
+        maxSuccess = success == null ? 0 : success;
     }
 
     @Override
@@ -107,12 +108,12 @@ public class ApplicationStatisticsStorage  extends AbstractApplicationStatistics
     }
 
 
-    public boolean batchInsert(final List<Statistics> statisticsList){
+    public boolean batchInsert(final List<Statistics> statisticsList) {
         return transactionTemplate.execute(new TransactionCallback<Boolean>() {
             @Override
             public Boolean doInTransaction(TransactionStatus status) {
-                int size = statisticsMapper.batchInsert(application,statisticsList);
-                if(size!=statisticsList.size()){
+                int size = statisticsMapper.batchInsert(application, statisticsList);
+                if (size != statisticsList.size()) {
                     status.setRollbackOnly();
                     return false;
                 }
@@ -121,13 +122,13 @@ public class ApplicationStatisticsStorage  extends AbstractApplicationStatistics
         });
     }
 
-    private boolean  createNewAppTable(final String applicationName){
+    private boolean createNewAppTable(final String applicationName) {
         return transactionTemplate.execute(new TransactionCallback<Boolean>() {
             @Override
             public Boolean doInTransaction(TransactionStatus status) {
                 Connection connection = DataSourceUtils.getConnection(dataSource);
-                String tableSql = StringUtils.replace(APPLICATION_TEMPLATE,"{}",applicationName);
-                Statement statement=null;
+                String tableSql = StringUtils.replace(APPLICATION_TEMPLATE, "{}", applicationName);
+                Statement statement = null;
                 try {
                     statement = connection.createStatement();
                     statement.execute(tableSql);
@@ -135,8 +136,8 @@ public class ApplicationStatisticsStorage  extends AbstractApplicationStatistics
                     e.printStackTrace();
                     status.setRollbackOnly();
                     return false;
-                }finally {
-                    if(statement!=null){
+                } finally {
+                    if (statement != null) {
                         try {
                             statement.close();
                         } catch (SQLException e) {

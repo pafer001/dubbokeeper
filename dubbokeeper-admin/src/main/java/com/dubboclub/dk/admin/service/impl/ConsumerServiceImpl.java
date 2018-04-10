@@ -8,7 +8,7 @@ import com.dubboclub.dk.admin.service.ConsumerService;
 import com.dubboclub.dk.admin.sync.util.Pair;
 import com.dubboclub.dk.admin.sync.util.SyncUtils;
 
-import java.util.*;
+import java.util.List;
 
 /**
  * Created by bieber on 2015/6/6.
@@ -22,7 +22,7 @@ public class ConsumerServiceImpl extends AbstractService implements ConsumerServ
             public Consumer convert(Pair<Long, URL> pair) {
                 return SyncUtils.url2Consumer(pair);
             }
-        },Constants.CONSUMERS_CATEGORY,Constants.APPLICATION_KEY,appName);
+        }, Constants.CONSUMERS_CATEGORY, Constants.APPLICATION_KEY, appName);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ConsumerServiceImpl extends AbstractService implements ConsumerServ
             public Consumer convert(Pair<Long, URL> pair) {
                 return SyncUtils.url2Consumer(pair);
             }
-        },Constants.CONSUMERS_CATEGORY,Constants.INTERFACE_KEY,service);
+        }, Constants.CONSUMERS_CATEGORY, Constants.INTERFACE_KEY, service);
     }
 
     @Override
@@ -42,6 +42,6 @@ public class ConsumerServiceImpl extends AbstractService implements ConsumerServ
             public Consumer convert(Pair<Long, URL> pair) {
                 return SyncUtils.url2Consumer(pair);
             }
-        },Constants.CONSUMERS_CATEGORY,conditions);
+        }, Constants.CONSUMERS_CATEGORY, conditions);
     }
 }

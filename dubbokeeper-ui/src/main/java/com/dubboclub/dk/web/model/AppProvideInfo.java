@@ -4,7 +4,7 @@ package com.dubboclub.dk.web.model;
  * Created by bieber on 2015/6/6.
  * 应用提供的服务信息
  */
-public class AppProvideInfo extends BasicResponse{
+public class AppProvideInfo extends BasicResponse {
 
     private String service;
 
