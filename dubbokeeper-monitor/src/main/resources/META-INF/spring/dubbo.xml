@@ -10,7 +10,6 @@
                     group="dubbo/TEST2"/>
 
     <bean class="com.dubboclub.dk.monitor.DubboKeeperMonitorService" autowire="byType" id="dubboKeeperMonitorService">
-
     </bean>
     <dubbo:service interface="com.alibaba.dubbo.monitor.MonitorService" ref="dubboKeeperMonitorService"
                    id="exportMonitorService">

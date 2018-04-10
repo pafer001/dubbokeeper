@@ -59,6 +59,8 @@ public class DubboKeeperMonitorService implements MonitorService {
         if (totalCount <= 0) {
             return;
         }
+
+        //time
         statistics.setElapsed(
                 Long.valueOf(statisticsURL.getParameter(MonitorService.ELAPSED, 0) / totalCount));
         statistics.setInput(
@@ -69,7 +71,7 @@ public class DubboKeeperMonitorService implements MonitorService {
             //TPS=并发数/响应时间
             BigDecimal tps = new BigDecimal(statistics.getConcurrent());
             tps = tps.divide(BigDecimal.valueOf(statistics.getElapsed()), 2, BigDecimal.ROUND_HALF_DOWN);
-            tps = tps.multiply(BigDecimal.valueOf(1000));
+//            tps = tps.multiply(BigDecimal.valueOf(1000));
             statistics.setTps(tps.doubleValue());//每秒能够处理的请求数量
         }
         BigDecimal kbps = new BigDecimal(statistics.getTps());
