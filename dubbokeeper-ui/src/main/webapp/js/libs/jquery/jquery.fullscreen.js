@@ -6,7 +6,7 @@
  * (See http://www.opensource.org/licenses/mit-license)
  */
 
-(function() {
+(function () {
 
     /**
      * Sets or gets the fullscreen state.
@@ -24,8 +24,7 @@
      *            returned for chaining.
      * @this {jQuery}
      */
-    function fullScreen(state)
-    {
+    function fullScreen(state) {
         var e, func, doc;
 
         // Do nothing when nothing was selected
@@ -37,31 +36,27 @@
 
         // Find the real element and the document (Depends on whether the
         // document itself or a HTML element was selected)
-        if (e.ownerDocument)
-        {
+        if (e.ownerDocument) {
             doc = e.ownerDocument;
         }
-        else
-        {
+        else {
             doc = e;
             e = doc.documentElement;
         }
 
         // When no state was specified then return the current state.
-        if (state == null)
-        {
+        if (state == null) {
             // When fullscreen mode is not supported then return null
             if (!((/** @type {?Function} */ doc["cancelFullScreen"])
-                || (/** @type {?Function} */ doc["webkitCancelFullScreen"])
-                || (/** @type {?Function} */ doc["mozCancelFullScreen"])))
-            {
+                    || (/** @type {?Function} */ doc["webkitCancelFullScreen"])
+                    || (/** @type {?Function} */ doc["mozCancelFullScreen"]))) {
                 return null;
             }
 
             // Check fullscreen state
             state = !!doc["fullScreen"]
-            || !!doc["webkitIsFullScreen"]
-            || !!doc["mozFullScreen"];
+                || !!doc["webkitIsFullScreen"]
+                || !!doc["mozFullScreen"];
             if (!state) return state;
 
             // Return current fullscreen element or "true" if browser doesn't
@@ -73,21 +68,19 @@
         }
 
         // When state was specified then enter or exit fullscreen mode.
-        if (state)
-        {
+        if (state) {
             // Enter fullscreen
             func = (/** @type {?Function} */ e["requestFullScreen"])
-            || (/** @type {?Function} */ e["webkitRequestFullScreen"])
-            || (/** @type {?Function} */ e["mozRequestFullScreen"]);
+                || (/** @type {?Function} */ e["webkitRequestFullScreen"])
+                || (/** @type {?Function} */ e["mozRequestFullScreen"]);
             if (func) func.call(e, Element["ALLOW_KEYBOARD_INPUT"]);
             return this;
         }
-        else
-        {
+        else {
             // Exit fullscreen
             func = (/** @type {?Function} */ doc["cancelFullScreen"])
-            || (/** @type {?Function} */ doc["webkitCancelFullScreen"])
-            || (/** @type {?Function} */ doc["mozCancelFullScreen"]);
+                || (/** @type {?Function} */ doc["webkitCancelFullScreen"])
+                || (/** @type {?Function} */ doc["mozCancelFullScreen"]);
             if (func) func.call(doc);
             return this;
         }
@@ -100,8 +93,7 @@
      *            The jQuery selection for chaining.
      * @this {jQuery}
      */
-    function toggleFullScreen()
-    {
+    function toggleFullScreen() {
         return (/** @type {!jQuery} */ fullScreen.call(this,
             !fullScreen.call(this)));
     }
@@ -113,8 +105,7 @@
      * @param {?Event} event
      *            The fullscreenchange event.
      */
-    function fullScreenChangeHandler(event)
-    {
+    function fullScreenChangeHandler(event) {
         jQuery(document).trigger(new jQuery.Event("fullscreenchange"));
     }
 
@@ -125,32 +116,27 @@
      * @param {?Event} event
      *            The fullscreenerror event.
      */
-    function fullScreenErrorHandler(event)
-    {
+    function fullScreenErrorHandler(event) {
         jQuery(document).trigger(new jQuery.Event("fullscreenerror"));
     }
 
     /**
      * Installs the fullscreenchange event handler.
      */
-    function installFullScreenHandlers()
-    {
+    function installFullScreenHandlers() {
         var e, change, error;
 
         // Determine event name
         e = document;
-        if (e["webkitCancelFullScreen"])
-        {
+        if (e["webkitCancelFullScreen"]) {
             change = "webkitfullscreenchange";
             error = "webkitfullscreenerror";
         }
-        else if (e["mozCancelFullScreen"])
-        {
+        else if (e["mozCancelFullScreen"]) {
             change = "mozfullscreenchange";
             error = "mozfullscreenerror";
         }
-        else
-        {
+        else {
             change = "fullscreenchange";
             error = "fullscreenerror";
         }

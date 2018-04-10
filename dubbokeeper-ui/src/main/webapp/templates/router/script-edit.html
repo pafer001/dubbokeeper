@@ -1,15 +1,18 @@
 <style>
-    .CodeMirror{
+    .CodeMirror {
         border: 1px solid #ccc;
         border-radius: 4px;
     }
-    .introduction .CodeMirror{
+
+    .introduction .CodeMirror {
         height: 300px;
     }
 </style>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <i class="icon-random"></i> <span ng-show="!id">为<strong class='text-primary'>{{serviceKey}}</strong>服务新增路由规则</span><span ng-show="id">编辑<strong class='text-primary'>{{serviceKey}}</strong>服务路由规则</span>
+        <i class="icon-random"></i> <span ng-show="!id">为<strong
+            class='text-primary'>{{serviceKey}}</strong>服务新增路由规则</span><span ng-show="id">编辑<strong
+            class='text-primary'>{{serviceKey}}</strong>服务路由规则</span>
     </div>
     <div class="panel-body">
         <div class="container-fluid">
@@ -17,14 +20,14 @@
                 <div class="row form-group  form-group-sm">
                     <label class="col-md-1 col-sm-1 col-xs-1 col-lg-1 control-label">名称：</label>
                     <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4 ">
-                        <input  class="form-control" type="text" ng-model="item.name" required placeholder="路由名称">
+                        <input class="form-control" type="text" ng-model="item.name" required placeholder="路由名称">
                     </div>
                     <div class="col-md-7 col-sm-7 col-xs-7 col-lg-7">可使用中文，由1-200个字符组成</div>
                 </div>
                 <div class="row form-group  form-group-sm">
                     <label class="col-md-1 col-sm-1 col-xs-1 col-lg-1 control-label">优先级：</label>
                     <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4 ">
-                        <input  class="form-control"  type="number" required   ng-model="item.priority" placeholder="优先级">
+                        <input class="form-control" type="number" required ng-model="item.priority" placeholder="优先级">
 
                     </div>
                     <div class="col-md-7 col-sm-7 col-xs-7 col-lg-7">数字越大越优先</div>
@@ -59,7 +62,7 @@
                             3、<code>context</code>:当前线程的服务调用上线文，由于当前服务并不是处于调用状态，所以该参数并没有实际用途
                         </p>
                         <p>
-                        例如：
+                            例如：
                             <textarea id="script-demo">(function(invokers,invocation,context){
 var methodName = invocation.methodName;
 var resultInvokers=[];
@@ -82,7 +85,9 @@ return resultInvokers;})(invokers,invocation,context);</textarea>
                 </div>
                 <div class="row form-group form-group-sm">
                     <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2">
-                        <button type="button" class="btn btn-success btn-sm" ng-click="save()"  ng-disabled="routeForm.$invalid"><i class="icon-ok"></i> 保存</button>
+                        <button type="button" class="btn btn-success btn-sm" ng-click="save()"
+                                ng-disabled="routeForm.$invalid"><i class="icon-ok"></i> 保存
+                        </button>
                     </div>
                 </div>
             </form>

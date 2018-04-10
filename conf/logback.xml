@@ -3,7 +3,7 @@
     <substitutionProperty name="PROJECT_NAME" value="dubbokeeper"/>
     <substitutionProperty name="LOG_HOME" value="${monitor.log.home}"/>
 
-    <timestamp key="byDate" datePattern="yyyyMMdd" />
+    <timestamp key="byDate" datePattern="yyyyMMdd"/>
 
     <appender name="dubboRolling" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_HOME}/dubbo-framework/DUBBO.log</file>

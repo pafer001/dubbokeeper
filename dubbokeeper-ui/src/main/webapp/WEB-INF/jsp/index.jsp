@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="common/header.jsp"%>
+<%@include file="common/header.jsp" %>
 <div class="container-fluid " ng-controller="dubbokeeperCtrl">
     <div class="row">
         <div class="col-md-2 col-lg-2 col-xs-2" ng-show="hasMenu">
@@ -26,7 +26,7 @@
     </div>
 </div>
 <dialog-tpl></dialog-tpl>
-<%@include file="common/scripts.jsp"%>
+<%@include file="common/scripts.jsp" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/theme/theme.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/router/router.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/override/override.js"></script>
@@ -50,4 +50,4 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/menu/menu.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/aboutus/aboutus.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/index.js"></script>
-<%@include file="common/footer.jsp"%>
+<%@include file="common/footer.jsp" %>

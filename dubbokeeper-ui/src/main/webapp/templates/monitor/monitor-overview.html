@@ -10,7 +10,8 @@
                         <date-range-picker time-range="timeRange"></date-range-picker>
                     </div>
                     <div class="col-md-6 col-xs-6 col-lg-6 col-sm-6" style="padding-top: 10px;">
-                        <button class="btn btn-primary"  ng-click="realTime()" title="实施查询一小时之内的监控数据">{{statMsg}}</button>
+                        <button class="btn btn-primary" ng-click="realTime()" title="实施查询一小时之内的监控数据">{{statMsg}}
+                        </button>
                     </div>
                 </div>
             </div>
@@ -33,9 +34,12 @@
                     </thead>
                     <tbody>
                     <tr ng-show="!details||details.length<=0">
-                        <td class="text-center text-warning" colspan="10">{{(isEmpty||!details||details.length<=0)?"未发现任何数据...":"努力加载中...."}}</td>
+                        <td class="text-center text-warning" colspan="10">
+                            {{(isEmpty||!details||details.length<=0)?"未发现任何数据...":"努力加载中...."}}
+                        </td>
                     </tr>
-                    <tr ng-show="details&&details.length>0"  ng-repeat="detail in details | orderBy : 'method'" class="ng-animation">
+                    <tr ng-show="details&&details.length>0" ng-repeat="detail in details | orderBy : 'method'"
+                        class="ng-animation">
                         <td>{{detail.method}}</td>
                         <td>{{detail.minElapsed}}->{{detail.maxElapsed}}</td>
                         <td>{{detail.minTps}}->{{detail.maxTps}}</td>

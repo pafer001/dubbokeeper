@@ -9,8 +9,8 @@ public class SynchronousDemo {
 
     public static void main(String[] args) throws InterruptedException {
         final SynchronousQueue<String> synchronousQueue = new SynchronousQueue<String>();
-        boolean start=false;
-        Thread thread = new Thread(){
+        boolean start = false;
+        Thread thread = new Thread() {
             @Override
             public void run() {
                 try {

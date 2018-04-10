@@ -1264,10 +1264,10 @@
 
         if (flags.indexOf('u') >= 0) {
             tmp = tmp
-                // Replace every Unicode escape sequence with the equivalent
-                // BMP character or a constant ASCII code point in the case of
-                // astral symbols. (See the above note on `astralSubstitute`
-                // for more information.)
+            // Replace every Unicode escape sequence with the equivalent
+            // BMP character or a constant ASCII code point in the case of
+            // astral symbols. (See the above note on `astralSubstitute`
+            // for more information.)
                 .replace(/\\u\{([0-9a-fA-F]+)\}|\\u([a-fA-F0-9]{4})/g, function ($0, $1, $2) {
                     var codePoint = parseInt($1 || $2, 16);
                     if (codePoint > 0x10FFFF) {
@@ -1282,9 +1282,9 @@
                 // avoid throwing on regular expressions that are only valid in
                 // combination with the "u" flag.
                 .replace(
-                /[\uD800-\uDBFF][\uDC00-\uDFFF]/g,
-                astralSubstitute
-            );
+                    /[\uD800-\uDBFF][\uDC00-\uDFFF]/g,
+                    astralSubstitute
+                );
         }
 
         // First, detect invalid regular expressions.
@@ -1505,9 +1505,9 @@
                 if (checkToken &&
                     checkToken.type === 'Keyword' &&
                     (checkToken.value === 'if' ||
-                    checkToken.value === 'while' ||
-                    checkToken.value === 'for' ||
-                    checkToken.value === 'with')) {
+                        checkToken.value === 'while' ||
+                        checkToken.value === 'for' ||
+                        checkToken.value === 'with')) {
                     return collectRegex();
                 }
                 return scanPunctuator();
@@ -2215,7 +2215,7 @@
             this.type = Syntax.TryStatement;
             this.block = block;
             this.guardedHandlers = [];
-            this.handlers = handler ? [ handler ] : [];
+            this.handlers = handler ? [handler] : [];
             this.handler = handler;
             this.finalizer = finalizer;
             this.finish();
@@ -2945,7 +2945,7 @@
         // Check for duplicated __proto__
         if (!computed) {
             proto = (key.type === Syntax.Identifier && key.name === '__proto__') ||
-            (key.type === Syntax.Literal && key.value === '__proto__');
+                (key.type === Syntax.Literal && key.value === '__proto__');
             if (hasProto.value && proto) {
                 tolerateError(Messages.DuplicateProtoProperty);
             }
@@ -3038,19 +3038,19 @@
         node = new Node();
         token = lex();
 
-        return node.finishTemplateElement({ raw: token.value.raw, cooked: token.value.cooked }, token.tail);
+        return node.finishTemplateElement({raw: token.value.raw, cooked: token.value.cooked}, token.tail);
     }
 
     function parseTemplateLiteral() {
         var quasi, quasis, expressions, node = new Node();
 
-        quasi = parseTemplateElement({ head: true });
-        quasis = [ quasi ];
+        quasi = parseTemplateElement({head: true});
+        quasis = [quasi];
         expressions = [];
 
         while (!quasi.tail) {
             expressions.push(parseExpression());
-            quasi = parseTemplateElement({ head: false });
+            quasi = parseTemplateElement({head: false});
             quasis.push(quasi);
         }
 
@@ -3342,7 +3342,7 @@
             expr = inheritCoverGrammar(matchKeyword('new') ? parseNewExpression : parsePrimaryExpression);
         }
 
-        for (;;) {
+        for (; ;) {
             if (match('.')) {
                 isBindingElement = false;
                 isAssignmentTarget = true;
@@ -3389,7 +3389,7 @@
             expr = inheritCoverGrammar(matchKeyword('new') ? parseNewExpression : parsePrimaryExpression);
         }
 
-        for (;;) {
+        for (; ;) {
             if (match('[')) {
                 isBindingElement = false;
                 isAssignmentTarget = true;
@@ -3676,6 +3676,7 @@
                 break;
         }
     }
+
     function reinterpretAsCoverFormalsList(expr) {
         var i, len, param, params, defaults, defaultCount, options, token;
 
@@ -3942,7 +3943,8 @@
         if (token.type === Token.Keyword && token.value === 'yield') {
             if (strict) {
                 tolerateUnexpectedToken(token, Messages.StrictReservedWord);
-            } if (!state.allowYield) {
+            }
+            if (!state.allowYield) {
                 throwUnexpectedToken(token);
             }
         } else if (token.type !== Token.Identifier) {
