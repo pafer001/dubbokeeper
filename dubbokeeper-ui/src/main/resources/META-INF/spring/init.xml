@@ -23,4 +23,6 @@
     <dubbo:reference interface="com.dubboclub.dk.storage.StatisticsStorage" check="false"
                      id="statisticsStorage"/>
 
+    <dubbo:reference interface="com.dubboclub.dk.storage.AlarmStrategyStorage" check="false"
+                     id="alarmStrategyStorage"/>
 </beans>

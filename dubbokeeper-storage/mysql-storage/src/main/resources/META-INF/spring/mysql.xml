@@ -52,14 +52,21 @@
         <property name="transactionManager" ref="dataSourceTransactionManager"/>
     </bean>
 
+    <dubbo:registry address="10.16.6.245:2181" protocol="zookeeper"
+                    group="dubbo/TEST2"/>
+
     <bean class="com.dubboclub.dk.storage.mysql.MysqlStatisticsStorage" id="mysqlStatisticsStorage"
           autowire="byType">
     </bean>
 
-    <dubbo:registry address="10.16.6.245:2181" protocol="zookeeper"
-                    group="dubbo/TEST2"/>
-
     <dubbo:service interface="com.dubboclub.dk.storage.StatisticsStorage"
                    ref="mysqlStatisticsStorage"/>
+
+    <bean class="com.dubboclub.dk.storage.mysql.MysqlAlarmStrategyStorage" id="mysqlAlarmStrategyStorage"
+          autowire="byType">
+    </bean>
+
+    <dubbo:service interface="com.dubboclub.dk.storage.AlarmStrategyStorage"
+                   ref="mysqlAlarmStrategyStorage"/>
 
 </beans>
