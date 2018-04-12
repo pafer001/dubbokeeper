@@ -216,6 +216,11 @@ public class MysqlStatisticsStorage implements StatisticsStorage, InitializingBe
         }
     }
 
+    @Override
+    public Collection<InterfaceServiceMethod> getInterfaceServiceMethod(String application) {
+        return statisticsMapper.getServiceMethod(application);
+    }
+
     public void setApplicationMapper(ApplicationMapper applicationMapper) {
         this.applicationMapper = applicationMapper;
     }

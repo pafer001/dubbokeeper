@@ -831,4 +831,9 @@ public class LuceneStatisticsStorage implements StatisticsStorage, InitializingB
             });
         }
     }
+
+    @Override
+    public Collection<InterfaceServiceMethod> getInterfaceServiceMethod(String application) {
+        return null;
+    }
 }

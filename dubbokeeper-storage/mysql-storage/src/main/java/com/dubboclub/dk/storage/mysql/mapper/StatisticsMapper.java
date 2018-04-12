@@ -1,9 +1,11 @@
 package com.dubboclub.dk.storage.mysql.mapper;
 
+import com.dubboclub.dk.storage.model.InterfaceServiceMethod;
 import com.dubboclub.dk.storage.model.ServiceInfo;
 import com.dubboclub.dk.storage.model.Statistics;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -45,5 +47,7 @@ public interface StatisticsMapper {
     public List<Statistics> queryServiceOverview(@Param("application") String application, @Param("service") String service, @Param("item") String item, @Param("start") long start, @Param("end") long end);
 
     public List<ServiceInfo> queryServiceByApp(@Param("application") String application);
+
+    public List<InterfaceServiceMethod> getServiceMethod(@Param("application") String application);
 
 }

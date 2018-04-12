@@ -5,10 +5,7 @@ import com.alibaba.dubbo.common.utils.StringUtils;
 import com.dubboclub.dk.admin.model.Provider;
 import com.dubboclub.dk.admin.service.ProviderService;
 import com.dubboclub.dk.storage.StatisticsStorage;
-import com.dubboclub.dk.storage.model.ApplicationInfo;
-import com.dubboclub.dk.storage.model.MethodMonitorOverview;
-import com.dubboclub.dk.storage.model.ServiceInfo;
-import com.dubboclub.dk.storage.model.StatisticsOverview;
+import com.dubboclub.dk.storage.model.*;
 import com.dubboclub.dk.web.model.MethodStatistics;
 import com.dubboclub.dk.web.utils.ConfigUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,4 +133,9 @@ public class MonitorController {
         return statisticsStorage.queryServiceByApp(application, start, end);
     }
 
+    @RequestMapping("/{appName}/InterfaceServiceMethod.htm")
+    public @ResponseBody
+    Collection<InterfaceServiceMethod> getInterfaceServiceMethod(@PathVariable("appName") String appName) {
+        return statisticsStorage.getInterfaceServiceMethod(appName);
+    }
 }

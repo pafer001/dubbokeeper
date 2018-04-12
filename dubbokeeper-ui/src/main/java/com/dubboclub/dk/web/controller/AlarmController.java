@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/alarm")
@@ -30,11 +32,20 @@ public class AlarmController {
         return alarmStrategyStorage.listAlarmStrategy(appName);
     }
 
+//    @RequestMapping("/index.htm")
+//    public @ResponseBody
+//    Collection<ApplicationInfo> monitorIndex() {
+//        return statisticsStorage.queryApplications();
+//    }
+
     @RequestMapping("/index.htm")
     public @ResponseBody
-    Collection<ApplicationInfo> monitorIndex() {
-        return statisticsStorage.queryApplications();
+    Map monitorIndex() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("service", "service");
+        return map;
     }
+
 
 
 //    @RequestMapping("/{appName}/strategy.htm")

@@ -32,6 +32,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/override/override.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/statistics/statistics.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/monitor/monitor.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/alarm/alarm.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/zoopeeper/zoopeeper.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/common/filter.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/common/basic.module.js"></script>
@@ -50,6 +51,4 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/menu/menu.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/aboutus/aboutus.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/index.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/modules/alarm/alarm.js"></script>
-
 <%@include file="common/footer.jsp" %>

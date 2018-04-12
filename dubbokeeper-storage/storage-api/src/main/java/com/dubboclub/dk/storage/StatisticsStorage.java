@@ -85,5 +85,10 @@ public interface StatisticsStorage {
      */
     public Collection<ServiceInfo> queryServiceByApp(String application, long start, long end);
 
-
+    /**
+     *
+     * @param application
+     * @return
+     */
+    public Collection<InterfaceServiceMethod> getInterfaceServiceMethod(String application);
 }

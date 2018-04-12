@@ -1,4 +1,4 @@
-var dubbokeeper = angular.module("dubbokeeper", ["apps", "head", "menu", "breadCrumb", 'aboutus', 'fullScreen', 'dialog', 'statistics', 'monitor', 'isteven-multi-select', 'appDependencies', 'zoopeeper', 'httpWrapper', 'override', 'router', 'theme', 'lineChart', 'dateRangePicker']);
+var dubbokeeper = angular.module("dubbokeeper", ["apps", "head", "menu", "breadCrumb", 'aboutus', 'fullScreen', 'dialog', 'statistics', 'monitor', 'isteven-multi-select', 'appDependencies', 'zoopeeper', 'httpWrapper', 'override', 'router', 'theme', 'lineChart', 'dateRangePicker', "alarm"]);
 dubbokeeper.controller("dubbokeeperCtrl", function ($scope, $dkContext) {
     $dkContext._init($scope);
     $scope.currentHome = {};
@@ -48,7 +48,7 @@ dubbokeeper.barDataset = [{
         disable: true,
         isHome: true
     }]
-},  {
+}, {
     barShowName: "ZooPeeper",
     barIdentify: "zoopeeper",
     barHref: "/zoopeeper",
@@ -58,12 +58,13 @@ dubbokeeper.barDataset = [{
     barIdentify: "aboutus",
     barHref: "/aboutus",
     barIconClass: "icon-bookmark"
-},{
+}, {
     barShowName: "Alarm",
-    barIdentify: "alarm",
-    barHref: "/alarm",
-    barIconClass: "icon-bookmark"
-},];
+        barIdentify: "alarm",
+        barHref: "/alarm",
+        barIconClass: "icon-bookmark"
+}];
+
 dubbokeeper.$dkContext = function () {
     var dubboKeeperContext = function () {
         this.inited = false;
