@@ -202,11 +202,10 @@
     <resultMap id="InterfaceServiceMethodMap" type="InterfaceServiceMethod">
         <result column="serviceInterface" property="serviceInterface"/>
         <result column="method" property="method"/>
-        <result column="type" property="type"/>
     </resultMap>
 
     <select id="getServiceMethod" resultMap="InterfaceServiceMethodMap">
-        SELECT DISTINCT serviceInterface, method, `type` FROM  `statistics_${application}`
+        SELECT DISTINCT serviceInterface, method FROM  `statistics_${application}`
     </select>
 
 </mapper>

@@ -50,6 +50,11 @@ public interface StatisticsStorage {
     public Collection<ApplicationInfo> queryApplications();
 
     /**
+     * 获取监控的app
+     * @return
+     */
+    public Collection<ApplicationInfo> queryMonitorApplications();
+    /**
      * 获取某个应用的信息
      *
      * @return

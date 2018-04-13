@@ -1,5 +1,6 @@
 package com.dubboclub.dk.storage.mysql;
 
+import com.alibaba.dubbo.common.utils.CollectionUtils;
 import com.dubboclub.dk.storage.StatisticsStorage;
 import com.dubboclub.dk.storage.model.*;
 import com.dubboclub.dk.storage.mysql.mapper.ApplicationMapper;
@@ -217,8 +218,22 @@ public class MysqlStatisticsStorage implements StatisticsStorage, InitializingBe
     }
 
     @Override
+    public Collection<ApplicationInfo> queryMonitorApplications() {
+        return applicationMapper.listApps();
+    }
+
+    @Override
     public Collection<InterfaceServiceMethod> getInterfaceServiceMethod(String application) {
-        return statisticsMapper.getServiceMethod(application);
+        List<InterfaceServiceMethod> serviceMethods = statisticsMapper.getServiceMethod(application);
+        if (CollectionUtils.isEmpty(serviceMethods)) {
+            return new ArrayList<InterfaceServiceMethod>();
+        }
+
+        for (InterfaceServiceMethod serviceMethod : serviceMethods) {
+            serviceMethod.setApplication(application);
+        }
+
+        return serviceMethods;
     }
 
     public void setApplicationMapper(ApplicationMapper applicationMapper) {

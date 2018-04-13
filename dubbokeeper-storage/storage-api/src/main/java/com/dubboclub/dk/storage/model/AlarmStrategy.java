@@ -16,6 +16,8 @@ public class AlarmStrategy implements Serializable{
     private long elapsed;
     //发送错误的次数
     private long failureCount;
+    //1有效，0无效
+    private int effective;
 
     public String getApplication() {
         return application;
@@ -65,6 +67,14 @@ public class AlarmStrategy implements Serializable{
         this.failureCount = failureCount;
     }
 
+    public int getEffective() {
+        return effective;
+    }
+
+    public void setEffective(int effective) {
+        this.effective = effective;
+    }
+
     @Override
     public String toString() {
         return "AlarmStrategy{" +
@@ -76,4 +86,19 @@ public class AlarmStrategy implements Serializable{
                 ", failureCount=" + failureCount +
                 '}';
     }
+
+    public static class AlarmStrategyBuilder{
+
+        public static AlarmStrategy fromInterfaceServiceMethod(InterfaceServiceMethod method) {
+            AlarmStrategy alarmStrategy = new AlarmStrategy();
+            alarmStrategy.setApplication(method.getApplication());
+            alarmStrategy.setServiceInterface(method.getServiceInterface());
+            alarmStrategy.setMethod(method.getMethod());
+            return alarmStrategy;
+        }
+    }
 }
+
+
+
+

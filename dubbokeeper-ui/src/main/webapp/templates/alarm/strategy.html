@@ -1,0 +1,56 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="icon-cloud"></i> <span ng-show="isConsumer">依赖<strong
+            class='text-primary'>{{application}}</strong>服务的</span>报警设置列表
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                <table class="table-striped table-hover table-condensed table table-condensed table-responsive">
+                    <thead>
+                    <tr>
+                        <th class="text-center"><strong>#</strong></th>
+                        <th class="text-left"><strong>serviceInterface</strong>
+                        </th>
+                        <th class="text-left"><strong>method</strong>
+                        </th>
+                        <th class="text-left"><strong>tps(qps)</strong></th>
+                        <th class="text-left"><strong>time(ms)</strong></th>
+                        <th class="text-left"><strong>failureCount</strong></th>
+                        <th class="text-left"><strong>effective</strong></th>
+
+                        <th class="text-left"><strong>操作</strong>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-show="!applications||applications.length<=0">
+                        <td class="text-center text-warning" colspan="{{isConsumer?4:5}}">
+                            {{(isEmpty||!applications||applications.length<=0)?"未发现任何数据...":"努力加载中...."}}
+                        </td>
+                    </tr>
+                    <tr ng-show="applications&&applications.length>0"
+                        ng-repeat="app in applications | orderBy : 'application' | filter:search"
+                        class="ng-animation">
+                        <td class="text-center td-5-width">{{$index+1}}</td>
+                        <td class="text-left td-20-width">{{app.serviceInterface}}</td>
+                        <td class="text-left td-20-width">{{app.method}}</td>
+                        <td class="text-left td-10-width">{{app.tps}}</td>
+                        <td class="text-left td-10-width">
+                            {{app.elapsed}}</td>
+                        <td class="text-left td-10-width">{{app.failureCount}}</td>
+                        <td class="text-left td-10-width">
+                            {{app.effective==1?"true":"false"}}
+                        </td>
+                        <td class="text-left td-10-width">
+                               <span ><a href="#/alarm/strategy/edit/{{app.application}}/{{app.serviceInterface}}/{{app.method}}"><i
+                                       class="icon-pencil" title="编辑"></i> </a></span>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

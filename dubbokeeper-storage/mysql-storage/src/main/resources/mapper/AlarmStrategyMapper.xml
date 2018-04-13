@@ -11,6 +11,7 @@
         <result column="elapsed" property="elapsed"/>
         <result column="successCount" property="successCount"/>
         <result column="failureCount" property="failureCount"/>
+        <result column="effective" property="effective"></result>
     </resultMap>
 
     <insert id="saveAlarmStrategy" parameterType="AlarmStrategy">
@@ -27,9 +28,24 @@
           tps,
           elapsed,
           successCount,
-          failureCount
+          failureCount,
+          effective
         FROM alarm_strategy
         WHERE application =#{application}
+    </select>
+
+    <select id="getMethodAlarmStrategy" resultMap="alarmStrategyMap" >
+        SELECT
+        application,
+        serviceInterface,
+        method,
+        tps,
+        elapsed,
+        successCount,
+        failureCount,
+        effective
+        FROM alarm_strategy
+        WHERE application =#{application} AND serviceInterface = #{serviceInterface} AND method=#{method}
     </select>
 
 </mapper>

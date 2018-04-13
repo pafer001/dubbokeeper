@@ -21,6 +21,11 @@ public class MysqlAlarmStrategyStorage implements AlarmStrategyStorage , Initial
         return alarmStrategyMapper.listAlarmStrategy(application);
     }
 
+    @Override
+    public AlarmStrategy getMethodAlarmStrategy(String appName, String serviceInterface, String method) {
+        return alarmStrategyMapper.getMethodAlarmStrategy(appName, serviceInterface, method);
+    }
+
     public AlarmStrategyMapper getAlarmStrategyMapper() {
         return alarmStrategyMapper;
     }

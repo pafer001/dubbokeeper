@@ -1,0 +1,87 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="icon-cloud"></i> <span>编辑服务<strong class='text-primary'>{{serviceKey}}</strong>报警阀值</span>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                <form name="providerForm">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                            <div class="form-group">
+                                <label>所属应用：</label>
+                                {{app.application}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                            <div class="form-group">
+                                <label>接口名称：</label>
+                                {{app.interface}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                            <div class="form-group">
+                                <label>方法：</label>
+                                {{app.method}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                            <div class="form-group form-inline">
+                                <label>TPS：</label>
+                                <input ng-model="parameters.weight" integer required type="number" name="tps"
+                                       class="form-control input-sm " value="{{app.tps}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                            <div class="form-group form-inline">
+                                <label>响应时间（ms）：</label>
+                                <input ng-model="parameters.weight" integer required type="number" name="elapsed"
+                                       class="form-control input-sm " value="{{app.elapsed}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                            <div class="form-group form-inline">
+                                <label>错误的次数：</label>
+                                <input ng-model="parameters.weight" integer required type="number" name="failureCount"
+                                       class="form-control input-sm " value="{{app.failureCount}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
+                            <div class="form-group form-inline">
+                                <label>是否有效：</label>
+                                <select name="effective">
+                                    <option selected =true>true</option>
+                                    <option>false</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-xs-3 col-lg-3 col-sm-3">
+                            <button type="button" class="btn btn-primary btn-sm" ng-click="update()"
+                                    ng-disabled="providerForm.$invalid">保存
+                            </button>
+                        </div>
+                        <div class="col-md-9 col-xs-9 col-lg-9 col-sm-9">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

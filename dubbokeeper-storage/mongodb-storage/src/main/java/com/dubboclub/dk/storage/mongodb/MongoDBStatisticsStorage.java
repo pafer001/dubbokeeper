@@ -255,4 +255,9 @@ public class MongoDBStatisticsStorage implements StatisticsStorage, Initializing
     public Collection<InterfaceServiceMethod> getInterfaceServiceMethod(String application) {
         return null;
     }
+
+    @Override
+    public Collection<ApplicationInfo> queryMonitorApplications() {
+        return null;
+    }
 }
