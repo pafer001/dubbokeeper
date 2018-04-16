@@ -15,8 +15,7 @@ alarm.config(function ($routeProvider) {
 
 alarm.controller("/alarm/strategy/edit", function ($scope, $httpWrapper, $queryFilter, $breadcrumb, $menu, $routeParams) {
     $menu.switchMenu("alarm");
-    $scope.applications = [];
-    $scope.isEmpty = false;
+    $scope.strategy = {};
     $breadcrumb.pushCrumb("应用列表", "查看应用列表", "admin/apps");
     var requestUrl = "alarm/" + $routeParams.application+"/"+$routeParams.serviceInterface+ "/"+$routeParams.method + "/strategy.htm";
     $scope.application = $routeParams.application;
@@ -24,21 +23,9 @@ alarm.controller("/alarm/strategy/edit", function ($scope, $httpWrapper, $queryF
     $httpWrapper.post({
         url: requestUrl,
         success: function (data) {
-            $scope.applications = data;
-            if (!data || data.length < 0) {
-                $scope.isEmpty = true;
-            }
-            $scope.originData = data;
+            $scope.strategy = data;
         }
     });
-    $scope.query = {};
-    $scope.filter = function () {
-        var filterResult = [];
-        if ($scope.isEmpty) {
-            return;
-        }
-        $scope.applications = $queryFilter($scope.originData, $scope.query);
-    }
 });
 
 

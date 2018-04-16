@@ -5,12 +5,12 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
-                <form name="providerForm">
+                <form name="providerForm" action="/alarm/strategy/save.htm?application="+{{strategy.application}}>
                     <div class="row">
                         <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
                             <div class="form-group">
                                 <label>所属应用：</label>
-                                {{app.application}}
+                                {{strategy.application}}
                             </div>
                         </div>
                     </div>
@@ -18,7 +18,7 @@
                         <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
                             <div class="form-group">
                                 <label>接口名称：</label>
-                                {{app.interface}}
+                                {{strategy.serviceInterface}}
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                         <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
                             <div class="form-group">
                                 <label>方法：</label>
-                                {{app.method}}
+                                {{strategy.method}}
                             </div>
                         </div>
                     </div>
@@ -35,8 +35,8 @@
                         <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
                             <div class="form-group form-inline">
                                 <label>TPS：</label>
-                                <input ng-model="parameters.weight" integer required type="number" name="tps"
-                                       class="form-control input-sm " value="{{app.tps}}">
+                                <input ng-model="strategy.tps" integer required="required" type="number" name="tps"
+                                       class="form-control input-sm " value="{{strategy.tps}}">
                             </div>
                         </div>
                     </div>
@@ -44,8 +44,8 @@
                         <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
                             <div class="form-group form-inline">
                                 <label>响应时间（ms）：</label>
-                                <input ng-model="parameters.weight" integer required type="number" name="elapsed"
-                                       class="form-control input-sm " value="{{app.elapsed}}">
+                                <input ng-model="strategy.elapsed"  integer required="required" type="number" name="elapsed"
+                                       class="form-control input-sm " value="{{strategy.elapsed}}"/>
                             </div>
                         </div>
                     </div>
@@ -53,8 +53,8 @@
                         <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
                             <div class="form-group form-inline">
                                 <label>错误的次数：</label>
-                                <input ng-model="parameters.weight" integer required type="number" name="failureCount"
-                                       class="form-control input-sm " value="{{app.failureCount}}">
+                                <input ng-model="strategy.failureCount" integer required="required" type="number" name="failureCount"
+                                       class="form-control input-sm " value="{{strategy.failureCount}}">
                             </div>
                         </div>
                     </div>
@@ -62,22 +62,21 @@
                         <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
                             <div class="form-group form-inline">
                                 <label>是否有效：</label>
-                                <select name="effective">
-                                    <option selected =true>true</option>
-                                    <option>false</option>
+                                <select name="effective"  ng-model="strategy.effective" >
+                                    <option selected =true value="1" checked="{{strategy.effective == 1?true:false}}">true</option>
+                                    <option value="0" checked="{{strategy.effective == 0?true:false}}">false</option>
                                 </select>
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-3 col-xs-3 col-lg-3 col-sm-3">
-                            <button type="button" class="btn btn-primary btn-sm" ng-click="update()"
+                            <button type="submit" class="btn btn-primary btn-sm"
                                     ng-disabled="providerForm.$invalid">保存
                             </button>
                         </div>
-                        <div class="col-md-9 col-xs-9 col-lg-9 col-sm-9">
 
-                        </div>
                     </div>
                 </form>
             </div>

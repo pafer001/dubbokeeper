@@ -13,7 +13,7 @@ public class AlarmStrategy implements Serializable{
     //qps
     private double tps;
     //响应时间
-    private long elapsed;
+    private long elapsed =10;
     //发送错误的次数
     private long failureCount;
     //1有效，0无效
