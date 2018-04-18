@@ -9,15 +9,15 @@
         <result column="serviceInterface" property="serviceInterface"/>
         <result column="method" property="method"/>
         <result column="elapsed" property="elapsed"/>
-        <result column="successCount" property="successCount"/>
+        <!--<result column="successCount" property="successCount"/>-->
         <result column="failureCount" property="failureCount"/>
         <result column="effective" property="effective"></result>
     </resultMap>
 
     <insert id="saveAlarmStrategy" parameterType="AlarmStrategy">
-            REPLACE INTO alarm_strategy (application, serviceInterface, method, tps, elapsed, successCount, failureCount)
+            REPLACE INTO alarm_strategy (application, serviceInterface, method, tps, elapsed, failureCount, effective)
             VALUES (
-            #{application}, #{serviceInterface},#{method}, #{tps}, #{elapsed}, #{successCount}, #{failureCount}
+            #{application}, #{serviceInterface},#{method}, #{tps}, #{elapsed},  #{failureCount}, #{effective}
             )
         </insert>
     <select id="listAlarmStrategy" resultMap="alarmStrategyMap" >
@@ -27,7 +27,6 @@
           method,
           tps,
           elapsed,
-          successCount,
           failureCount,
           effective
         FROM alarm_strategy
@@ -41,7 +40,6 @@
         method,
         tps,
         elapsed,
-        successCount,
         failureCount,
         effective
         FROM alarm_strategy

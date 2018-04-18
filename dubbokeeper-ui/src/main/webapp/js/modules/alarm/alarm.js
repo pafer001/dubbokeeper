@@ -13,7 +13,7 @@ alarm.config(function ($routeProvider) {
     });
 });
 
-alarm.controller("/alarm/strategy/edit", function ($scope, $httpWrapper, $queryFilter, $breadcrumb, $menu, $routeParams) {
+alarm.controller("/alarm/strategy/edit", function ($scope, $httpWrapper, $queryFilter, $breadcrumb, $menu, $routeParams, $dialog) {
     $menu.switchMenu("alarm");
     $scope.strategy = {};
     $breadcrumb.pushCrumb("应用列表", "查看应用列表", "admin/apps");
@@ -26,6 +26,22 @@ alarm.controller("/alarm/strategy/edit", function ($scope, $httpWrapper, $queryF
             $scope.strategy = data;
         }
     });
+
+    $scope.update = function () {
+        $dialog.confirm({
+            content: "确认提交修改内容？", callback: function () {
+                $httpWrapper.post({
+                    url: "/alarm/strategy/save.htm",
+                    data: JSON.stringify($scope.strategy) ,
+                    config: {headers: {'Content-Type': 'application/json'}},
+                    success: function (data) {
+                        $dialog.info({content: "成功更新" + $scope.strategy.serviceInterface+"的" +
+                            $scope.strategy.method + "报警阀值的信息！"});
+                    }
+                });
+            }
+        })
+    }
 });
 
 

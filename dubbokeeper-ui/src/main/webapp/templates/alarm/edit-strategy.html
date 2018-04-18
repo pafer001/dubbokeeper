@@ -5,7 +5,7 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
-                <form name="providerForm" action="/alarm/strategy/save.htm?application="+{{strategy.application}}>
+                <form name="providerForm" >
                     <div class="row">
                         <div class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
                             <div class="form-group">
@@ -73,7 +73,7 @@
                     <div class="row">
                         <div class="col-md-3 col-xs-3 col-lg-3 col-sm-3">
                             <button type="submit" class="btn btn-primary btn-sm"
-                                    ng-disabled="providerForm.$invalid">保存
+                                    ng-disabled="providerForm.$invalid" ng-click="update()">保存
                             </button>
                         </div>
 
